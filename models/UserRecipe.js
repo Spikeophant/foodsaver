@@ -28,7 +28,7 @@ UserRecipe.init(
   },
   {
     sequelize,
-    timestamps, false,
+    timestamps: false,
     underscored: true,
     freezeTableName: true,
     modelName: 'user_recipe',
