@@ -23,7 +23,7 @@ Ingredient.belongsToMany(Recipe, {
 });
 
 Recipe.belongsToMany(Ingredient, {
-  through: UserRecipe,
+  through: RecipeIngredient,
   foreignKey: 'recipe_id',
   otherKey: 'ingredient_id',
 });
@@ -33,4 +33,5 @@ module.exports = {
   Recipe,
   UserRecipe,
   Ingredient,
+  RecipeIngredient
 }
