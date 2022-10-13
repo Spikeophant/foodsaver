@@ -18,7 +18,14 @@ Recipe.init(
     body: {
       type: DataTypes.TEXT,
       allowNull: false,
-    }
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'recipe'
   }
 );
 
