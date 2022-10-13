@@ -20,4 +20,6 @@ const seedAll = async () => {
   await seedRecipeIngredients();
   console.log('\n------------ Recipe Ingredients Seeded --------------\n');
   process.exit(0);
-}
+};
+
+seedAll();
