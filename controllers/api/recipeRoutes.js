@@ -1,3 +1,4 @@
+const { Recipe, Ingredient} = require('../../models');
 const router = require('express').Router();
 //need to add recipe model below
 
@@ -6,14 +7,18 @@ const router = require('express').Router();
 router.get('/', async (req, res) => {
     try{
         //change this to name of recipe model imported
-        const recipeData = await this.name.findAll ({
-            raw: true
+        const recipeData = await Recipe.findAll ({
+            raw: true,
+            nest: true,
+            include: [Ingredient],
         });
 
         // for now renders to homepage
-        res.render('homepage', {
-            recipes: recipeData
-        })
+        //res.render('homepage', {
+        //    recipes: recipeData
+       //})
+        console.log(recipeData);
+        res.json(recipeData);
 
 
     } catch (err) {
@@ -22,15 +27,15 @@ router.get('/', async (req, res) => {
 });
 
 // GET one recipe
-router.get('/recipe/id:', async (req, res) => {
+router.get('/recipe/:id', async (req, res) => {
     try {
-        const recipeData = await this.findByPk(req.params.id, {
-            raw: true
+        const recipeData = await Recipe.findByPk(req.params.id, {
+            raw: true,
+            nest: true,
+            include: [Ingredient],
         });
 
-        res.render ('homepage', {
-            recipe: recipeData
-        })
+        res.json(recipeData);
 
     } catch (err) {
         res.status(500).json(err);
