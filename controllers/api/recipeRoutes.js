@@ -1,7 +1,5 @@
-const { Recipe, Ingredient} = require('../../models');
 const router = require('express').Router();
-//need to add recipe model below
-
+const { Recipe, Ingredient} = require('../../models');
 
 // GET all recipes
 router.get('/', async (req, res) => {
@@ -43,11 +41,39 @@ router.get('/recipe/:id', async (req, res) => {
 });
 
 // ADD recipe
+router.post('/', async (req, res) => {
+    try {
+        const newRecipe = await Recipe.create({
+            ...req.body,
+            //figure out what goes here
+        })
+
+        res.json(newRecipe);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
 
 // DELETE recipes
+router.delete('/:id', async (req, res) => {
+    try {
+        const recipeData = await Recipe.destroy({
+            where: {
+                id: req.params.id,
+                //add another thing
+            },
+        });
 
+        if (!recipeData) {
+            res.status(404).json({ message: 'No recipe found! '});
+            return;
+        }
 
-
+        res.json(recipeData)
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 
 module.exports = router;
