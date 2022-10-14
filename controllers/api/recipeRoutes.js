@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
     try {
         const newRecipe = await Recipe.create({
             ...req.body,
-            //figure out what goes here
+            //most likely attached to user id
         })
 
         res.json(newRecipe);
