@@ -1,31 +1,50 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Recipe } = require('../../models');
 
 // GET all users
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const userData = await User.findAll()({
-            raw: true
+        const userData = await User.findAll({
+            raw: true,
+            nest: true,
+            include: [Recipe],
         });
 
-        res.render('homepage', {
-            users: userData
-        });
+        // res.render('homepage', {
+        //     users: userData
+        // });
+
+        console.log(userData);
+        res.json(userData);
+
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
+// GET one user
+router.get('/user/:id', async (req, res) => {
+    try {
+        const userData = await User.findbyPk(req.params.id, {
+            raw: true,
+            nest: true,
+            include: [Recipe],
+        });
+
+        res.json(userData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+
 // CREATE new user
 router.post('/', async (req, res) => {
     try {
-        const userData = await User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-        });
+        const userData = await User.create(req.body);
 
         req.session.save(() => {
+            req.session.user_id = userData.id;
             req.session.loggedIn = true;
 
             res
