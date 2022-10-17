@@ -1,17 +1,17 @@
 require('dotenv').config();
 
-const baseUrl = 'https://api.edamam.com';
-const recipeSearchUrl = '/api/recipes/v2?type=public&q=';
-const edamamKeys = `&app_id=${process.env.EDAMAM_APP_ID}&app_key=${process.env.EDAMAM_APP_KEY}`
+const baseUrl = 'https://themealdb.com/api/json/v1/';
+const mealDBApiKey = process.env.MEALDB_API_KEY;
+const ingredientSearch = '/filter.php?i=';
 
-async function getEdamamRecipe(ingredient) {
-  const response = await fetch(baseUrl + recipeSearchUrl + ingredient + edamamKeys);
-  if (!response.ok) {
-    throw new Error('Edamam lookup failed!  Abort!')
+async function getRecipe(ingredient) {
+  const res = await fetch(baseUrl + mealDBApiKey + ingredientSearch + ingredient);
+  if (!res.ok) {
+    console.log(res.status);
+    throw new Error('MealDB Lookup Failed!! Abort!!');
   }
-  const obj = await response.json();
-  return obj.hits
+  return await res.json()
 }
 
+console.log(getRecipe('chicken'));
 
-module.exports = { getEdamamRecipe }
