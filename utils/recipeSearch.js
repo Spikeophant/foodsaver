@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const baseUrl = 'https://themealdb.com/api/json/v1/';
+const baseUrl = 'https://www.themealdb.com/api/json/v1/';
 const mealDBApiKey = process.env.MEALDB_API_KEY;
 const ingredientSearch = '/filter.php?i=';
 
