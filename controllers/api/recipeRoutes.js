@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Recipe, Ingredient} = require('../../models');
+const mealDb = require('../../utils/mealDbRecipeSearch');
 
 // GET all recipes
 router.get('/', async (req, res) => {
@@ -39,6 +40,27 @@ router.get('/recipe/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+router.get('/search', async (req, res) => {
+    try {
+        console.log('I got traffic.')
+        const recipes = await mealDb.getRecipeByIngredient('chicken');
+        res.render('recipeSearch', {recipes})
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+router.get('/searchById/:id', async (req, res) => {
+    try {
+        const recipe = await mealDb.getRecipeById(req.params.id);
+        res.json(recipe)
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
 
 // ADD recipe
 router.post('/', async (req, res) => {

@@ -8,14 +8,13 @@
 <div class="row mb-4 recipe">
   <div class="col-md-5">
     <h3>
-      {{{recipe}}}
       <a href="/recipe/{{recipe.id}}">{{recipe.name}}</a>
     </h3>
-    <p>Submited by {{userrecipe.user_name}}</p>
+    <p>Submited by {{recipe.user_name}}</p>
   </div>
   <div class="col-md-7">
     <p>
-      {{recipe.description}}
+      {{recipe.body}}
     </p>
   </div>
 </div>
