@@ -12,11 +12,11 @@ async function getRecipeByIngredient(ingredient) {
     throw new Error('MealDB Search Failed!! Abort!!');
   }
   const recipes = await res.json();
-  console.log(recipes);
-  return recipes
+  console.log(recipes.meals);
+  return recipes.meals
 }
 
-async function getRecipe(id) {
+async function getRecipeById(id) {
   const res = await fetch(baseUrl + mealDBApiKey + singleRecipeSearch + id);
   if (!res.ok) {
     console.log(res.status);
@@ -28,5 +28,4 @@ async function getRecipe(id) {
 }
 
 
-
-getRecipe(53039);
+module.exports = { getRecipeById, getRecipeByIngredient }
