@@ -12,6 +12,9 @@ const ingredientData = [
   },
 ];
 
-const seedIngredients = () => Ingredient.bulkCreate(ingredientData);
+const seedIngredients = () => Ingredient.bulkCreate(ingredientData, {
+  individualHooks: true,
+  returning: true,
+});
 
 module.exports = seedIngredients;
