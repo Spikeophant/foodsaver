@@ -27,6 +27,9 @@ const userRecipeData = [
   },
 ];
 
-const seedUserRecipes = () => UserRecipe.bulkCreate(userRecipeData);
+const seedUserRecipes = () => UserRecipe.bulkCreate(userRecipeData,{
+  individualHooks: true,
+  returning: true,
+});
 
 module.exports = seedUserRecipes;
