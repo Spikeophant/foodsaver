@@ -67,7 +67,7 @@ router.post ('/login', async (req, res) => {
                 email: req.body.email,
             }
         });
-        console.log('User FOund.')
+
         if (!userData) {
             res
               .status(400)
@@ -76,7 +76,6 @@ router.post ('/login', async (req, res) => {
         }
         console.log('User Data passed.')
         const validPassword = await userData.checkPassword(req.body.password);
-        console.log('Is Valid Passowrd? ' + validPassword)
 
         if (!validPassword) {
             res
@@ -94,6 +93,7 @@ router.post ('/login', async (req, res) => {
         });
 
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
