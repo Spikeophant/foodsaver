@@ -46,7 +46,7 @@ router.get('/ingredient/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const newIngredient = await Ingredient.create({
-            ...req.body,
+            name: req.name,
             user_id: req.session.user_id,
         })
 

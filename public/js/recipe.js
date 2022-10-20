@@ -31,7 +31,8 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/userprofile');
+        document.location.replace('/recipes');
+        alert('Added recipe');
       } else {
         alert('Failed to delete recipe');
       }
