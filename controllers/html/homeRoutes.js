@@ -15,6 +15,17 @@ router.get('/', async (req, res) => {
   res.render('homepage', {recipes});
 })
 
+router.get('/recipe/:id', async (req, res) => {
+  const recipe = await Recipe.findByPk(req.params.id, {
+    raw: true,
+    nest: true,
+  })
+
+  console.log(recipe);
+  res.render('recipe', {recipe});
+})
+
+
 //should small login be here and redirect to login page??
 // features recipes and images
 
