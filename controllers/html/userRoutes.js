@@ -15,4 +15,12 @@ router.get('/login', async (req, res) => {
   }
 });
 
+router.get('/logout', async (req, res) => {
+  req.session.destroy((err) => {
+    console.log('Something went terribly, terribly wrong...');
+    console.log(err);
+  });
+  res.redirect('/');
+})
+
 module.exports = router;
