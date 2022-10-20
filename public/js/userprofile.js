@@ -6,7 +6,7 @@ const newFormHandler = async (event) => {
     const description = document.querySelector('#recipe-desc').value.trim();
   
     if (name && ingredient && description) {
-      const response = await fetch(`/api/recipe`, {
+      const response = await fetch(`/api/recipes`, {
         method: 'POST',
         body: JSON.stringify({ name, ingredient, description }),
         headers: {
@@ -15,7 +15,7 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/userprofile');
+        document.location.replace('/');
       } else {
         alert('Failed to create recipe');
       }

@@ -12,10 +12,6 @@ router.get('/', async (req, res) => {
             include: [Ingredient],
         });
 
-        // for now renders to homepage
-        //res.render('homepage', {
-        //    recipes: recipeData
-       //})
        res.render('recipe', {recipeData});
         console.log(recipeData);
         res.json(recipeData);
@@ -84,7 +80,7 @@ router.delete('/:id', async (req, res) => {
         const recipeData = await Recipe.destroy({
             where: {
                 id: req.params.id,
-                user_id: req.session.user_id,
+                // user_id: req.session.user_id,
             },
         });
 

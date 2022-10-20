@@ -14,6 +14,7 @@ const newFormHandler = async (event) => {
   
       if (response.ok) {
         document.location.replace('/');
+        alert('Added ingredient');
       } else {
         alert('Failed to add ingredient');
       }

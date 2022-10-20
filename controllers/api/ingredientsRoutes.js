@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
     try {
         const newIngredient = await Ingredient.create({
             ...req.body,
-            // user_id: req.session.user_id,
+            user_id: req.session.user_id,
         })
 
         res.json(newIngredient);
@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
 
 
 // DELETE ingredient
-router.delete('/:id', async (req, res) => {
+router.delete('/ingredient/:id', async (req, res) => {
     try {
         const ingredientData = await Ingredient.destroy({
             where: {
