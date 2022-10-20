@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
         const userData = await User.findAll({
             raw: true,
             nest: true,
-            include: [Recipe],
+            // include: [Recipe],
         });
 
         // res.render('homepage', {
@@ -28,7 +28,7 @@ router.get('/user/:id', async (req, res) => {
         const userData = await User.findbyPk(req.params.id, {
             raw: true,
             nest: true,
-            include: [Recipe],
+            // include: [Recipe],
         });
 
         res.json(userData);
