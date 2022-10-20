@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Recipe, Ingredient } = require('../../models');
 // const withAuth = require('../../utils/auth');
 const mealDb = require('../../utils/mealDbRecipeSearch');
+const withAuth = require('../../utils/auth');
 
 
 router.get('/', async (req, res) => {
@@ -12,29 +13,38 @@ router.get('/', async (req, res) => {
     nested: true,
   })
   console.log(recipes);
-  res.render('homepage', {recipes});
+  res.render('homepage', {
+    recipes,
+    logged_in: req.session.logged_in
+  });
 })
 
-router.get('/recipe/search', async (req, res) => {
+router.get('/recipe/search', withAuth,  async (req, res) => {
   try {
     const recipes = await mealDb.getRecipeByIngredient('chicken');
-    res.render('recipeSearch', {recipes})
+    res.render('recipeSearch', {
+      recipes,
+      logged_in: req.session.logged_in
+    })
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
 
-router.get('/recipes', async (req, res) => {
+router.get('/recipes', withAuth, async (req, res) => {
   const recipes = await Recipe.findAll({
     raw: true,
     nested: true,
   })
   console.log(recipes);
-  res.render('recipeAll', {recipes});
+  res.render('recipeAll', {
+    recipes,
+    logged_in: req.session.logged_in
+  });
 })
 
-router.get('/recipe/:id', async (req, res) => {
+router.get('/recipe/:id', withAuth, async (req, res) => {
   const recipe = await Recipe.findByPk(req.params.id, {
     raw: true,
     nest: true,
@@ -42,19 +52,25 @@ router.get('/recipe/:id', async (req, res) => {
   })
 
   console.log(recipe);
-  res.render('recipe', {recipe});
+  res.render('recipe', {
+    recipe,
+    logged_in: req.session.logged_in
+  })
 })
 
-router.get('/ingredients', async (req, res) => {
+router.get('/ingredients', withAuth, async (req, res) => {
   const ingredients = await Ingredient.findAll({
     raw: true,
     nested: true,
   })
   console.log(ingredients);
-  res.render('ingredients', {ingredients});
+  res.render('ingredients', {
+    ingredients,
+    logged_in: req.session.logged_in
+  });
 })
 
-router.get('/searchById/:id', async (req, res) => {
+router.get('/searchById/:id', withAuth, async (req, res) => {
   try {
       const recipe = await mealDb.getRecipeById(req.params.id);
       res.json(recipe)
