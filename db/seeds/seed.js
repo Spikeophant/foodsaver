@@ -14,14 +14,14 @@ const seedAll = async () => {
   console.log('\n------------ Users Seeded --------------\n');
   await seedRecipes();
   console.log('\n------------ Recipes Seeded --------------\n');
-  await seedIngredients();
-  console.log('\n------------ Ingredients Seeded --------------\n');
   await seedUserRecipes();
   console.log('\n------------ Users Recipes Seeded --------------\n');
   await seedRecipeIngredients();
   console.log('\n------------ Recipe Ingredients Seeded --------------\n');
   await seedUserIngredients();
   console.log('\n------------ User Ingredients Seeded --------------\n')
+  await seedIngredients();
+  console.log('\n------------ Ingredients Seeded --------------\n');
   process.exit(0);
 };
 
