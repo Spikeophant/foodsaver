@@ -14,10 +14,21 @@ router.get('/', async (req, res) => {
 
        res.render('recipe', {recipeData});
         console.log(recipeData);
-        res.json(recipeData);
+     //   res.json(recipeData);
 
 
     } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/search', async (req, res) => {
+    try {
+        console.log('Searching MealDB');
+        const recipes = await mealDb.getRecipeByIngredient('chicken');
+        res.render('recipeSearch', {recipes})
+    } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
@@ -31,7 +42,7 @@ router.get('/:id', async (req, res) => {
             include: [Ingredient],
         });
 
-        res.render('recipe');
+//       res.render('recipe');
         res.json(recipeData);
 
     } catch (err) {
@@ -39,16 +50,6 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.get('/search', async (req, res) => {
-    try {
-        console.log('I got traffic.')
-        const recipes = await mealDb.getRecipeByIngredient('chicken');
-        res.render('recipeSearch', {recipes})
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
 
 router.get('/searchById/:id', async (req, res) => {
     try {

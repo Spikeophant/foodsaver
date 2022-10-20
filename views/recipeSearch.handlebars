@@ -1,4 +1,4 @@
-{{#each recipe}}
+{{#each recipes as |recipe|}}
 <div class="row">
   <div class="col-auto">
     <h2>{{recipe.strMeal}}</h2>
@@ -9,7 +9,7 @@
   <div class="col-md-6">
     <h3>Recipe Link:</h3>
   <div class="link">
-   <p></p> <a href="/api/recipes/searchById/{{recipe.idMeal}}">linked</a> </p>
+   <p> <a href="/api/recipes/searchById/{{recipe.idMeal}}">linked</a> </p>
   </div>
   </div>
 </div>

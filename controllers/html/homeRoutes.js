@@ -15,6 +15,16 @@ router.get('/', async (req, res) => {
   res.render('homepage', {recipes});
 })
 
+router.get('/recipe/search', async (req, res) => {
+  try {
+    const recipes = await mealDb.getRecipeByIngredient('chicken');
+    res.render('recipeSearch', {recipes})
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 router.get('/recipes', async (req, res) => {
   const recipes = await Recipe.findAll({
     raw: true,
@@ -43,17 +53,6 @@ router.get('/ingredients', async (req, res) => {
   console.log(ingredients);
   res.render('ingredients', {ingredients});
 })
-
-router.get('/recipe/search', async (req, res) => {
-  try {
-      console.log('I got traffic.')
-      const recipes = await mealDb.getRecipeByIngredient('chicken');
-      res.render('recipeSearch', {recipes})
-  } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-  }
-});
 
 router.get('/searchById/:id', async (req, res) => {
   try {
