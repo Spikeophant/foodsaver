@@ -19,9 +19,9 @@ router.get('/', async (req, res) => {
   });
 })
 
-router.get('/recipe/search', withAuth,  async (req, res) => {
+router.get('/recipe/search/:term', withAuth,  async (req, res) => {
   try {
-    const recipes = await mealDb.getRecipeByIngredient('chicken');
+    const recipes = await mealDb.getRecipeByIngredient(req.params.term);
     res.render('recipeSearch', {
       recipes,
       logged_in: req.session.logged_in
@@ -59,9 +59,8 @@ router.get('/recipe/:id', withAuth, async (req, res) => {
 })
 
 router.get('/ingredients', withAuth, async (req, res) => {
-  const ingredients = await User.findAll({
-    include: [ Ingredient ],
-    where: {id: req.session.user_id},
+  const ingredients = await Ingredient.findAll({
+    include: [ {model: User, where: {id: req.session.user_id}} ],
     raw: true,
     nest: true,
   })
