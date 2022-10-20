@@ -5,13 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FoodSavers!</title>
   <link rel="stylesheet" href="./../../public/css/style.css">
-  <link rel="stylesheet" href="./../../public/css/tailwind.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-<h1>Testing</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex excepturi ab commodi dolore vel quis ullam nostrum earum expedita, quibusdam minima hic cupiditate voluptas quaerat neque quidem, impedit labore debitis?</p>
+<body class="bg-yellow-50/50">
+  <nav>
+   <a class ="text-lime-700 font-bold" href="/api/ingredients">INGREDIENTS</a>
+   <a href="/api/recipes">RECIPES</a>
+
+  {{#if logged_in}}
+  <a href="/userprofile">PROFILE</a>
+  <button>Logout</button>
+  {{else}}
+  <a href="/user/login">LOGIN</a>
+  {{/if}}
+</nav>
+
 {{{ body }}}
+
+
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae aperiam, at non placeat sunt quidem atque modi enim architecto, adipisci quod voluptatem sed, dignissimos quaerat nam natus. Inventore, quos? Facilis.</p>
 
 </body>
 
