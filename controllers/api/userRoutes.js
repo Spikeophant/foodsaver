@@ -85,7 +85,7 @@ router.post ('/login', async (req, res) => {
 
         req.session.save(() => {
             req.session.logged_in = true;
-            req.session.user_id = User.id;
+            req.session.user_id = userData.id;
 
             res
               .status(200)
@@ -101,11 +101,11 @@ router.post ('/login', async (req, res) => {
 
 // Logout
 router.post('/logout', (req, res) => {
-    if (req.session.logged_in) {
+       try {
         req.session.destroy(() => {
             res.status(204).end();
         });
-    } else {
+    } catch {
         res.status(404).end();
     }
 });
