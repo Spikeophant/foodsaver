@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Recipe, Ingredient } = require('../../models');
 // const withAuth = require('../../utils/auth');
 const mealDb = require('../../utils/mealDbRecipeSearch');
+const withAuth = require('../../utils/auth');
 
 
 router.get('/', async (req, res) => {
@@ -18,7 +19,7 @@ router.get('/', async (req, res) => {
   });
 })
 
-router.get('/recipe/search', async (req, res) => {
+router.get('/recipe/search', withAuth,  async (req, res) => {
   try {
     const recipes = await mealDb.getRecipeByIngredient('chicken');
     res.render('recipeSearch', {
@@ -31,7 +32,7 @@ router.get('/recipe/search', async (req, res) => {
   }
 });
 
-router.get('/recipes', async (req, res) => {
+router.get('/recipes', withAuth, async (req, res) => {
   const recipes = await Recipe.findAll({
     raw: true,
     nested: true,
@@ -43,7 +44,7 @@ router.get('/recipes', async (req, res) => {
   });
 })
 
-router.get('/recipe/:id', async (req, res) => {
+router.get('/recipe/:id', withAuth, async (req, res) => {
   const recipe = await Recipe.findByPk(req.params.id, {
     raw: true,
     nest: true,
@@ -57,7 +58,7 @@ router.get('/recipe/:id', async (req, res) => {
   })
 })
 
-router.get('/ingredients', async (req, res) => {
+router.get('/ingredients', withAuth, async (req, res) => {
   const ingredients = await Ingredient.findAll({
     raw: true,
     nested: true,
@@ -69,7 +70,7 @@ router.get('/ingredients', async (req, res) => {
   });
 })
 
-router.get('/searchById/:id', async (req, res) => {
+router.get('/searchById/:id', withAuth, async (req, res) => {
   try {
       const recipe = await mealDb.getRecipeById(req.params.id);
       res.json(recipe)
