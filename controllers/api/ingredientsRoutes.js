@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
         //res.render('homepage', {
         //    recipes: recipeData
        //})
+       res.render('ingredients', {ingredientData});
         console.log(ingredientData);
         res.json(ingredientData);
 
