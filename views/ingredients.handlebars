@@ -9,13 +9,18 @@
 </form>
 </div>
 
+<<<<<<< HEAD
 {{#if ingredients.length}}
 <div class="ingredient-list">
 {{#each ingredients as |users|}}
 <div class="sm:grid grid-cols-5 border-2 border-emerald-600/60 shadow-md p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 m-3 ">
+=======
+{{#each ingredients as |ingredient|}}
+<div class="sm:grid grid-cols-5 border-2 border-emerald-600/60 shadow-md p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 m-3 ingredient-list">
+>>>>>>> main
   <img src="/images/tomato.jpeg" alt="one tomato" class="w-full rounded-lg">
   <div class="pt-5 self-center sm:pt-0 sm:pl-10 col-span-3">
-      <h2 class="text-gray-800 capitalize text-xl font-bold">{{ingredient.name}}</h2>
+      <h2 class="text-gray-800 capitalize text-xl font-bold"><a href="/recipe/search/{{ingredient.name}}">{{ingredient.name}}</a></h2>
     <a href="#" class="capitalize underline inline-block pt-2">Edit</a>
     <button class="capitalize underline inline-block pt-2" data-id="{{ingredient.id}}">
           <a href="/api/ingredients/ingredient/{{ingredient.id}}" class="capitalize underline inline-block pt-2">Delete</a>

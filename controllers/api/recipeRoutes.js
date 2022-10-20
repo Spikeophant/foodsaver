@@ -22,10 +22,11 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/search', async (req, res) => {
+router.get('/search/:term', async (req, res) => {
+    console.log('hitsearch')
     try {
         console.log('Searching MealDB');
-        const recipes = await mealDb.getRecipeByIngredient('chicken');
+        const recipes = await mealDb.getRecipeByIngredient(req.params.term);
         res.render('recipeSearch', {recipes})
     } catch (err) {
         console.log(err);
