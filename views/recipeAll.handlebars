@@ -1,14 +1,16 @@
 {{#each recipes as |recipe|}}
-<div class="grid grid-cols-3 m-5">
-  <div class="col-span-1 flex justify-center">
-    <img src="/images/test.jpg" alt="tomatoes, carrots, zuchini in a bowl with rice">
-  </div>
-  <div>
-    <h2 class="text-4xl text-emerald-700 hover:text-emerald-500 font-semibold flex justify-center">
-        <a href="/recipe/{{recipe.id}}">{{recipe.name}}</a>
-    </h2>
-    <h3 class="text-2xl col-span-2 flex justify-center">Ingredients and Instructions</h3>
-    <p class="col-span-2 flex justify-center">{{recipe.body}}</p>
-  </div>
+<div class="flex">
+<div class="w-full max-w-sm bg-white rounded-lg shadow-md dark:border-emerald-700 m-5">
+    <img class="p-8 rounded-t-lg" src="/images/test.jpg" alt="salad">
+    <div class="px-5 pb-5">
+        <div class="flex justify-between items-center">
+            <span class="text-3xl font-bold text-emerald-700">{{recipe.name}}</span>
+            <a href="/recipe/{{recipe.id}}" class="text-white bg-emerald-600 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-emerald-600/70 dark:hover:bg-emerald-500 dark:focus:ring-emerald-800">View Recipe</a>
+        </div>
+    </div>
+</div>
 </div>
 {{/each}}
+
+
+

@@ -27,6 +27,7 @@ router.get('/recipe/:id', async (req, res) => {
   const recipe = await Recipe.findByPk(req.params.id, {
     raw: true,
     nest: true,
+    include: [Ingredient],
   })
 
   console.log(recipe);
