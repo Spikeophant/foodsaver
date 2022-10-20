@@ -59,13 +59,11 @@ router.get('/recipe/:id', withAuth, async (req, res) => {
 })
 
 router.get('/ingredients', withAuth, async (req, res) => {
-  const ingredients = await Ingredient.findAll({
-    include: {UserIngredient, User},
-    where: {
-      user_id: req.session.user_id,
-    },
+  const ingredients = await User.findAll({
+    include: [ Ingredient ],
+    where: {id: req.session.user_id},
     raw: true,
-    nested: true,
+    nest: true,
   })
   console.log(ingredients);
   res.render('ingredients', {
