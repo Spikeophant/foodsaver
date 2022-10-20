@@ -1,3 +1,27 @@
+<div class="flex justify-center p-5">
+  <h2 class="block text-5xl text-emerald-700 font-semibold">Welcome to FoodSaver!</h2>
+</div>
+
+<div class="flex justify-center p-5">
+<div class="max-w-sm rounded overflow-hidden shadow-lg">
+  <img class="w-full" src="public/images/pexels-ella-olsson-1640777.jpg" alt="tomatoes, carrots, zuchini in a bowl with rice">
+  <div class="px-6 py-4">
+    {{#each recipes as |recipe| }}
+    <div class="font-bold text-xl mb-2">
+      <a href="/recipe/{{recipe.id}}">{{recipe.name}}</a>
+    </div>
+     <p class="text-gray-700 text-base">
+      {{recipe.body}}
+    </p>
+    <div class="px-6 pt-4 pb-2">
+    <span class="inline-block bg-emerald-600/50 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Submited by {{recipe.user_name}}
+    </span>
+    </div>
+  </div>
+{{/each}}
+</div>
+</div>
+
 <div class="row">
   <div class="col-auto">
     <h2>Welcome To Foodsaver!</h2>
@@ -19,3 +43,5 @@
   </div>
 </div>
 {{/each}}
+
+</div>
