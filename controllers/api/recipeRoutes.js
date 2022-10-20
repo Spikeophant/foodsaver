@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
         //res.render('homepage', {
         //    recipes: recipeData
        //})
+       res.render('recipe', {recipeData});
         console.log(recipeData);
         res.json(recipeData);
 
@@ -26,7 +27,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET one recipe
-router.get('/recipe/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const recipeData = await Recipe.findByPk(req.params.id, {
             raw: true,
@@ -34,6 +35,7 @@ router.get('/recipe/:id', async (req, res) => {
             include: [Ingredient],
         });
 
+        res.render('recipe');
         res.json(recipeData);
 
     } catch (err) {
@@ -67,7 +69,7 @@ router.post('/', async (req, res) => {
     try {
         const newRecipe = await Recipe.create({
             ...req.body,
-            //most likely attached to user id
+            user_id: req.session.user_id,
         })
 
         res.json(newRecipe);
@@ -82,7 +84,7 @@ router.delete('/:id', async (req, res) => {
         const recipeData = await Recipe.destroy({
             where: {
                 id: req.params.id,
-                //add another thing
+                user_id: req.session.user_id,
             },
         });
 
