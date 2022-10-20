@@ -5,16 +5,16 @@ const mealDb = require('../../utils/mealDbRecipeSearch');
 // GET all recipes
 router.get('/', async (req, res) => {
     try{
-        //change this to name of recipe model imported
+        // change this to name of recipe model imported
         const recipeData = await Recipe.findAll ({
             raw: true,
             nest: true,
             include: [Ingredient],
         });
 
-       res.render('recipe', {recipeData});
+    //    res.render('recipe', {recipeData});
         console.log(recipeData);
-     //   res.json(recipeData);
+       res.json(recipeData);
 
 
     } catch (err) {

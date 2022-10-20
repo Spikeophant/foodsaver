@@ -17,7 +17,7 @@
         {{!-- can't get the data for recipe.user_name, future development --}}
         <span
           class="inline-block bg-emerald-600/50 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 text-center ">Submited
-          by test_user_1{{recipe.user_name}} 
+          by test_user_1{{recipe.user_name}}
         </span>
       </div>
     </div>
@@ -28,32 +28,43 @@
 {{#if logged_in}}
 <div class="flex justify-center">
   <div class="w-full max-w-md m-5">
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 login-form">
-    <h3 class="block text-emerald-700 font-3xl font-bold text-center">Add Recipe</h3>
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="email-login">
-        Name
-      </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email-login" type="text" placeholder="Quesadillas">
-    </div>
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="password-login">
-       Ingredient
-      </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password-login" type="text" placeholder="Chicken">
-    </div>
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 new-recipe-form">
+      <h3 class="block text-emerald-700 font-3xl font-bold text-center">Add Recipe</h3>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="recipe-name">
+          Name
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="recipe-name" type="text" placeholder="Quesadillas">
+      </div>
       <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="password-login">
-       Description
-      </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password-login" type="text" placeholder="In a large skillet, over medium-high heat...">
-    </div>
-    <div class="flex items-center justify-center">
-      <button class="bg-emerald-600/80 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline new-recipe-form" type="submit">
-        Add Recipe
-      </button>
-    </div>
-  </form>
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="recipe-ingredient">
+          Ingredient
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          id="recipe-ingredient" type="text" placeholder="Chicken">
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="recipe-body">
+          Description
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          id="recipe-body" type="text" placeholder="In a large skillet, over medium-high heat...">
+      </div>
+      <div class="flex items-center justify-center">
+        <button
+          class="bg-emerald-600/80 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline new-recipe-form"
+          type="submit">
+          Add Recipe
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
+
+<script src="/js/recipe.js"></script>
 </div>
 {{/if}}

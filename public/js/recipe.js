@@ -2,20 +2,21 @@ const newFormHandler = async (event) => {
     event.preventDefault();
   
     const name = document.querySelector('#recipe-name').value.trim();
-    const ingredient = document.querySelector('#recipe-ingredient').value.trim();
-    const description = document.querySelector('#recipe-desc').value.trim();
+    const ingredients = document.querySelector('#recipe-ingredient').value.trim();
+    const body = document.querySelector('#recipe-body').value.trim();
   
-    if (name && ingredient && description) {
+    if (name && ingredients && body) {
       const response = await fetch(`/api/recipes`, {
         method: 'POST',
-        body: JSON.stringify({ name, ingredient, description }),
+        body: JSON.stringify({ name, ingredients, body}),
         headers: {
           'Content-Type': 'application/json',
         },
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        document.location.replace('/recipes');
+        alert('Added a recipe');
       } else {
         alert('Failed to create recipe');
       }
@@ -26,7 +27,7 @@ const newFormHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
   
-      const response = await fetch(`/api/recipe/${id}`, {
+      const response = await fetch(`/api/recipes/${id}`, {
         method: 'DELETE',
       });
   
