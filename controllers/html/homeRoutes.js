@@ -12,13 +12,19 @@ router.get('/', async (req, res) => {
     nested: true,
   })
   console.log(recipes);
-  res.render('homepage', {recipes});
+  res.render('homepage', {
+    recipes,
+    logged_in: req.session.logged_in
+  });
 })
 
 router.get('/recipe/search', async (req, res) => {
   try {
     const recipes = await mealDb.getRecipeByIngredient('chicken');
-    res.render('recipeSearch', {recipes})
+    res.render('recipeSearch', {
+      recipes,
+      logged_in: req.session.logged_in
+    })
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -31,7 +37,10 @@ router.get('/recipes', async (req, res) => {
     nested: true,
   })
   console.log(recipes);
-  res.render('recipeAll', {recipes});
+  res.render('recipeAll', {
+    recipes,
+    logged_in: req.session.logged_in
+  });
 })
 
 router.get('/recipe/:id', async (req, res) => {
@@ -42,7 +51,9 @@ router.get('/recipe/:id', async (req, res) => {
   })
 
   console.log(recipe);
-  res.render('recipe', {recipe});
+  res.render('recipe', {
+    recipe});,
+  logged_in: req.session.logged_in
 })
 
 router.get('/ingredients', async (req, res) => {
@@ -51,7 +62,10 @@ router.get('/ingredients', async (req, res) => {
     nested: true,
   })
   console.log(ingredients);
-  res.render('ingredients', {ingredients});
+  res.render('ingredients', {
+    ingredients,
+    logged_in: req.session.logged_in
+  });
 })
 
 router.get('/searchById/:id', async (req, res) => {
