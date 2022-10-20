@@ -52,8 +52,9 @@ router.get('/recipe/:id', async (req, res) => {
 
   console.log(recipe);
   res.render('recipe', {
-    recipe});,
-  logged_in: req.session.logged_in
+    recipe,
+    logged_in: req.session.logged_in
+  })
 })
 
 router.get('/ingredients', async (req, res) => {
