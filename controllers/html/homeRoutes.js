@@ -14,6 +14,15 @@ router.get('/', async (req, res) => {
   res.render('homepage', {recipes});
 })
 
+router.get('/recipes', async (req, res) => {
+  const recipes = await Recipe.findAll({
+    raw: true,
+    nested: true,
+  })
+  console.log(recipes);
+  res.render('recipeAll', {recipes});
+})
+
 router.get('/recipe/:id', async (req, res) => {
   const recipe = await Recipe.findByPk(req.params.id, {
     raw: true,
@@ -33,14 +42,7 @@ router.get('/ingredients', async (req, res) => {
   res.render('ingredients', {ingredients});
 })
 
-router.get('/recipes', async (req, res) => {
-  const recipes = await Recipe.findAll({
-    raw: true,
-    nested: true,
-  })
-  console.log(recipes);
-  res.render('recipe', {recipes});
-})
+
 
 // router.get('/userprofile', withAuth, async (req, res) => {
 //   try {
