@@ -1,7 +1,36 @@
+<div class="flex justify-end m-2 p-3">
+<form class="w-full max-w-sm new-ingredient-form">
+  <div class="flex items-center border-b border-teal-500 py-2">
+    <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Tomato" id="ingredient-name">
+    <button class="flex-shrink-0 bg-emerald-500 hover:bg-emerald-700 border-emerald-500 hover:border-emerald-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit">
+      Add Ingredient
+    </button>
+  </div>
+</form>
+</div>
+
 {{#each ingredients as |ingredient|}}
-<div class="row">
-  <div class="col-auto">
-    <h2>{{ingredient.name}}</h2>
+<div class="sm:grid grid-cols-5 border-2 border-emerald-600/60 shadow-md p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 m-3 ingredient-list">
+  <img src="/images/tomato.jpeg" alt="one tomato" class="w-full rounded-lg">
+  <div class="pt-5 self-center sm:pt-0 sm:pl-10 col-span-3">
+      <h2 class="text-gray-800 capitalize text-xl font-bold">{{ingredient.name}}</h2>
+    <a href="#" class="capitalize underline inline-block pt-2">Edit</a>
+    <button class="capitalize underline inline-block pt-2" data-id="{{ingredient.id}}">Delete
+    </button>
+    {{!-- <a href="#" class="capitalize underline inline-block pt-2">Delete</a> --}}
   </div>
 </div>
 {{/each}}
+
+<script>"/js/ingredient.js"</script>
+
+
+
+
+
+
+
+
+
+
+

@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
         //res.render('homepage', {
         //    recipes: recipeData
        //})
+       res.render('ingredients', {ingredientData});
         console.log(ingredientData);
         res.json(ingredientData);
 
@@ -45,8 +46,8 @@ router.get('/ingredient/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const newIngredient = await Ingredient.create({
-            ...req.body,
-            //figure out what goes here
+            name: req.name,
+            user_id: req.session.user_id,
         })
 
         res.json(newIngredient);
@@ -57,12 +58,12 @@ router.post('/', async (req, res) => {
 
 
 // DELETE ingredient
-router.delete('/:id', async (req, res) => {
+router.delete('/ingredient/:id', async (req, res) => {
     try {
         const ingredientData = await Ingredient.destroy({
             where: {
                 id: req.params.id,
-                //add another thing
+                // user_id: req.session.user_id,
             },
         });
 
