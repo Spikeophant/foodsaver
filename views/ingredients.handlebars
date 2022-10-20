@@ -15,9 +15,9 @@
   <div class="pt-5 self-center sm:pt-0 sm:pl-10 col-span-3">
       <h2 class="text-gray-800 capitalize text-xl font-bold">{{ingredient.name}}</h2>
     <a href="#" class="capitalize underline inline-block pt-2">Edit</a>
-    <button class="capitalize underline inline-block pt-2" data-id="{{ingredient.id}}">Delete
+    <button class="capitalize underline inline-block pt-2" data-id="{{ingredient.id}}">
+          <a href="/api/ingredients/ingredient/${{ingredient.id}}" class="capitalize underline inline-block pt-2">Delete</a>
     </button>
-    {{!-- <a href="#" class="capitalize underline inline-block pt-2">Delete</a> --}}
   </div>
 </div>
 {{/each}}
