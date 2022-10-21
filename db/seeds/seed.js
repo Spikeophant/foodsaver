@@ -22,6 +22,7 @@ const seedAll = async () => {
   console.log('\n------------ Recipe Ingredients Seeded --------------\n');
   await seedUserIngredients();
   console.log('\n------------ User Ingredients Seeded --------------\n')
+
   process.exit(0);
 };
 
