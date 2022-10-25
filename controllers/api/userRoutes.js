@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Recipe } = require('../../models');
+const { User } = require('../../models');
 
 // GET all users
 router.get('/', async (req, res) => {
@@ -45,6 +45,7 @@ router.post('/', async (req, res) => {
 
         req.session.save(() => {
             req.session.user_id = userData.id;
+            req.session.user_email = userData.email;
             req.session.logged_in = true;
 
             res
@@ -53,7 +54,7 @@ router.post('/', async (req, res) => {
         });
 
     } catch (err) {
-        res.status(500).json (err);
+        res.status(400).json (err);
     }
 });
 
@@ -84,8 +85,8 @@ router.post ('/login', async (req, res) => {
         }
 
         req.session.save(() => {
-            req.session.logged_in = true;
             req.session.user_id = userData.id;
+            req.session.logged_in = true;
 
             res
               .status(200)
@@ -94,7 +95,7 @@ router.post ('/login', async (req, res) => {
 
     } catch (err) {
         console.log(err);
-        res.status(500).json(err);
+        res.status(400).json(err);
     }
 });
 

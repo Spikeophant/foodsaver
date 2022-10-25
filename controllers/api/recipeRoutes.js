@@ -63,11 +63,17 @@ router.get('/searchById/:id', async (req, res) => {
 })
 
 // ADD recipe
+// so close, adding recipe name instead of ingredient name
 router.post('/', async (req, res) => {
     try {
         const newRecipe = await Recipe.create({
             ...req.body,
             user_id: req.session.user_id,
+            ingredients: {
+                ...req.body,
+            }    
+        }, {
+            include: [Ingredient],
         })
 
         res.json(newRecipe);

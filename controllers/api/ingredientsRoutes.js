@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Ingredient } = require('../../models');
+const { Ingredient, User } = require('../../models');
+
 
 
 // GET all ingredients
@@ -9,13 +10,14 @@ router.get('/', async (req, res) => {
         const ingredientData = await Ingredient.findAll ({
             raw: true,
             nest: true,
+            include: [User],
         });
 
         // for now renders to homepage
         //res.render('homepage', {
         //    recipes: recipeData
        //})
-       res.render('ingredients', {ingredientData});
+    //    res.render('ingredients', {ingredientData});
         console.log(ingredientData);
         res.json(ingredientData);
 
@@ -32,6 +34,7 @@ router.get('/ingredient/:id', async (req, res) => {
         const ingredientData = await Ingredient.findByPk(req.params.id, {
             raw: true,
             nest: true,
+            include: [User],
         });
 
         res.json(ingredientData);
@@ -48,6 +51,12 @@ router.post('/', async (req, res) => {
         const newIngredient = await Ingredient.create({
             ...req.body,
             user_id: req.session.user_id,
+            user: {
+                id: req.session.user_id,
+                email: req.session.user_email,
+            }
+        }, {
+            include: [User],
         })
 
         res.json(newIngredient);
