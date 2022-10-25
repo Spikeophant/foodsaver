@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { Ingredient, User } = require('../../models');
-const withAuth = require('../../utils/auth')
 
 
 // GET all ingredients
@@ -17,7 +16,7 @@ router.get('/', async (req, res) => {
         //res.render('homepage', {
         //    recipes: recipeData
        //})
-       res.render('ingredients', {ingredientData});
+    //    res.render('ingredients', {ingredientData});
         console.log(ingredientData);
         res.json(ingredientData);
 
@@ -45,13 +44,16 @@ router.get('/ingredient/:id', async (req, res) => {
 
 
 // ADD ingredient
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const newIngredient = await Ingredient.create({
             ...req.body,
             user_id: req.session.user_id,
-            
-
+            users: {
+                ...req.body,
+            }
+        }, {
+            include: [User],
         })
 
         res.json(newIngredient);
@@ -62,7 +64,7 @@ router.post('/', withAuth, async (req, res) => {
 
 
 // DELETE ingredient
-router.delete('/ingredient/:id', withAuth, async (req, res) => {
+router.delete('/ingredient/:id', async (req, res) => {
     try {
         const ingredientData = await Ingredient.destroy({
             where: {
