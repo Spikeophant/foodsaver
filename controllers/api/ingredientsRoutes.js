@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Ingredient, User } = require('../../models');
+const withAuth = require('../../utils/auth')
 
 
 // GET all ingredients
@@ -44,11 +45,13 @@ router.get('/ingredient/:id', async (req, res) => {
 
 
 // ADD ingredient
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const newIngredient = await Ingredient.create({
             ...req.body,
             user_id: req.session.user_id,
+            
+
         })
 
         res.json(newIngredient);
@@ -59,7 +62,7 @@ router.post('/', async (req, res) => {
 
 
 // DELETE ingredient
-router.delete('/ingredient/:id', async (req, res) => {
+router.delete('/ingredient/:id', withAuth, async (req, res) => {
     try {
         const ingredientData = await Ingredient.destroy({
             where: {

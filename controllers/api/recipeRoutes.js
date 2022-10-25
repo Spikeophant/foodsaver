@@ -68,6 +68,11 @@ router.post('/', async (req, res) => {
         const newRecipe = await Recipe.create({
             ...req.body,
             user_id: req.session.user_id,
+            ingredients: {
+                ...req.body,
+            }    
+        }, {
+            include: [Ingredient],
         })
 
         res.json(newRecipe);
