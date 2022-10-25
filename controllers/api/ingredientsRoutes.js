@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Ingredient } = require('../../models');
+const { Ingredient, User } = require('../../models');
 
 
 // GET all ingredients
@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
         const ingredientData = await Ingredient.findAll ({
             raw: true,
             nest: true,
+            include: [User],
         });
 
         // for now renders to homepage
